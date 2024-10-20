@@ -1,0 +1,23 @@
+<p>compe works!</p>
+
+<div>
+  <button (click)="hacerAlgo()">Hacer algo</button>
+  <input (input)="onInput($event)">
+  <select (change)="onChange($event)">
+    <option value="1">Opción 1</option>
+    <option value="2">Opción 2</option>
+  </select>
+  <input (keydown)="onKeydown($event)">
+  <input (keyup)="onKeyup($event)">
+  <div (mouseenter)="onMouseEnter()">Pasa el ratón por aquí</div>
+  <div (mouseleave)="onMouseLeave()">Deja el área con el ratón</div>
+  <input (focus)="onFocus()">
+  <form (submit)="onSubmit()">
+    <!-- campos del formulario -->
+  </form>
+  <button (dblclick)="onDoubleClick()">Doble clic</button>
+  <div (contextmenu)="onRightClick($event)">Haz clic derecho aquí</div>
+  <div (wheel)="onWheel($event)">Desplaza con la rueda del ratón</div>
+  <div (mouseover)="onMouseOver()">Mouse sobre</div>
+  <div (mouseout)="onMouseOut()">Mouse fuera</div>
+</div>

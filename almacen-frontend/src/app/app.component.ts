@@ -4,8 +4,6 @@ import {ListaProductoComponent} from "./paginas/lista-producto/lista-producto.co
 import {FormProductoComponent} from "./paginas/form-producto/form-producto.component";
 import {LayoutComponent} from "./paginas/layout/layout.component";
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,

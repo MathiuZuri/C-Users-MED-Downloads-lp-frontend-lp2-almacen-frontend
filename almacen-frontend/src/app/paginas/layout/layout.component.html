@@ -7,7 +7,7 @@
         <mat-icon>close</mat-icon>
       }
     </button>
-    <span>SysAlmacen</span>
+    <span>SysAlmacen:Nahuel Supo beta</span>
     <span class="example-spacer"></span>
     <span class="example-spacer"> </span>
     <button class="no-border" mat-icon-button [matMenuTriggerFor]="menu">
@@ -39,9 +39,24 @@
       <mat-divider></mat-divider>
 
       <button class="myButton" mat-menu-item (click)="sidenav.toggle()"
-              routerLink="/pages/consult-wizard" style="cursor: pointer">
+              routerLink="/pages/categoria" style="cursor: pointer">
         <mat-icon>view_carousel</mat-icon>
-        <span>Register Consult W.</span>
+        <span>Main Categoria</span>
+      </button>
+
+      <mat-divider></mat-divider>
+      <button class="myButton" mat-menu-item (click)="sidenav.toggle()"
+              routerLink="/pages/marca" style="cursor: pointer">
+        <mat-icon>account_balance</mat-icon>
+        <span>Main Marca</span>
+      </button>
+
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <button class="myButton" mat-menu-item (click)="sidenav.toggle()"
+              routerLink="/pages/unidadmedida" style="cursor: pointer">
+        <mat-icon>account_balance</mat-icon>
+        <span>Main Unidad Medida</span>
       </button>
 
       <mat-divider></mat-divider>

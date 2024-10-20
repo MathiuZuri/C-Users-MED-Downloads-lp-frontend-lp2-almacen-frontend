@@ -15,6 +15,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormProductoComponent} from "../form-producto/form-producto.component";
 import {MaterialModule} from "../../material/material.module";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-lista-producto',
@@ -38,7 +39,8 @@ import {MaterialModule} from "../../material/material.module";
     MatHeaderCellDef,
     MatLabel,
     FormProductoComponent,
-    MatSortModule
+    MatSortModule,
+    NgIf
   ],
   templateUrl: './lista-producto.component.html',
   styleUrl: './lista-producto.component.css'
@@ -46,11 +48,25 @@ import {MaterialModule} from "../../material/material.module";
 export class ListaProductoComponent implements OnInit {
   productos:ProductoRepor[]=[];
 
-  displayedColumns: string[] = ['idProducto', 'nombre', 'pu', 'puOld', 'acciones'];
+  //displayedColumns: string[] = ['idProducto', 'nombre', 'pu', 'puOld', 'acciones'];
+  columnsDefinitions = [
+    { def: 'idProducto', label: 'idProducto', hide: true},
+    { def: 'nombre', label: 'nombre', hide: false},
+    { def: 'pu', label: 'pu', hide: false},
+    { def: 'puOld', label: 'puOld', hide: false},
+    { def: 'categoria', label: 'categoria', hide: false},
+    { def: 'acciones', label: 'acciones', hide: false}
+  ];
+
   dataSource: MatTableDataSource<ProductoRepor>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  showComponent: boolean = false;
+  toggleComponent(da:boolean) {
+    this.showComponent = da;
+  }
 
   constructor(private productoService: ProductoService) {
   }
@@ -88,5 +104,8 @@ export class ListaProductoComponent implements OnInit {
     }
   }
 
+  getDisplayedColumns(){
+    return this.columnsDefinitions.filter(cd => !cd.hide).map(cd => cd.def);
+  }
 
 }
