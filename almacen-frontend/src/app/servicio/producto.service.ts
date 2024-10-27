@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from "../../environments/environment.development";
 import {Producto} from "../modelo/Producto";
-import {BehaviorSubject, Observable, tap} from "rxjs";
+import {BehaviorSubject, Observable, Subject, tap} from "rxjs";
 import {ProductoRepor} from "../modelo/ProductoRepor";
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,9 @@ import {ProductoRepor} from "../modelo/ProductoRepor";
 export class ProductoService {
   private url:string = `${environment.HOST}/productos`;
 
-  private productosSubject = new BehaviorSubject<ProductoRepor[]>([]); // Comportamiento inicial
-  productos$ = this.productosSubject.asObservable(); // Observable para suscribirse
+  //private productosSubject = new BehaviorSubject<ProductoRepor[]>([]); // Comportamiento inicial
+  //productos$ = this.productosSubject.asObservable(); // Observable para suscribirse
+  private productosSubject: Subject<ProductoRepor[]> = new Subject<ProductoRepor[]>;
 
   private productoSeleccionadoSubject = new BehaviorSubject<ProductoRepor | null>(null);
   productoSeleccionado$ = this.productoSeleccionadoSubject.asObservable();
@@ -28,7 +29,7 @@ export class ProductoService {
   }
 
   findById(id:number){
-    return this.http.get<Producto>(this.url+`/${id}`);
+    return this.http.get<ProductoRepor>(this.url+`/${id}`);
   }
 
   save(producto:Producto):Observable<Producto>{
@@ -54,6 +55,13 @@ export class ProductoService {
     console.log("SERVICE");
     console.log(producto);
     this.productoSeleccionadoSubject.next(producto);
+  }
+
+  setProductosSubject(data: ProductoRepor[]){this.productosSubject.next(data);}
+  getProductosSubject(){return this.productosSubject.asObservable();}
+
+  listPageable(p: number, s: number){
+    return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`);
   }
 
 }

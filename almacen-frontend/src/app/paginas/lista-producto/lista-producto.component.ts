@@ -74,15 +74,14 @@ export class ListaProductoComponent implements OnInit {
   ngOnInit():void {
     //this.productoService.findAll().subscribe(productos => this.productos = productos);
 
-    this.productoService.productos$.subscribe(data=>{
+    this.productoService.getProductosSubject().subscribe(data=>{
       //this.productos=data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-
     });
-
     this.productoService.findAll();
+
   }
 
   eliminar(id:number){
